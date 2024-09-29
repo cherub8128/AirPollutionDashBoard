@@ -58,14 +58,28 @@ class State(rx.State):
 def index() -> rx.Component:
     return rx.flex(
         rx.color_mode.button(position="top-right"),
-        rx.heading("공기오염 대시보드", size="9", align="center",margin="20px",weight="bold", margin_top="50px"),
+        rx.heading("공기오염 인체 위험 대시보드", size="8", align="center",margin="20px",weight="bold", margin_top="50px"),
         rx.vstack(
             rx.card(
-                rx.text("""폐암 확률 23.3% 증가!! 외출 금지🚶🚫
-실내🏠에 머무르세요!!""",weight="bold",size="7",align="center", color_scheme="blue",white_space="pre-wrap"),
-                padding="1em",
-                width="100%",
+                rx.text(
+                    rx.cond(State.so_x>0.5,"폐암 확률 증가!! ",""),
+                    rx.cond(State.lungs>0.3,"마스크😷를 착용해주세요. ",""),
+                    size="5",
+                    weight="bold",
+                    color_scheme="blue",
+                    trim="end",
                 ),
+                rx.text(
+                    rx.cond(State.brain>0.2,"외출🚶 금지🚫!! ","외출해도 괜찮습니다. "),
+                    rx.cond(State.stomach>0.3,"물💧을 충분히 마셔주세요. ",""),
+                    size="5",
+                    weight="bold",
+                    color_scheme="blue",
+                    trim="end",
+                ),
+                padding="1em",
+                width="520px",
+            ),
             rx.card(
                 rx.flex(
                     rx.image(src='/people.png',width="500px",position="absolute",top="0",left="0",z_index="0"),
@@ -119,7 +133,6 @@ def index() -> rx.Component:
         width="100%",
         height="100vh",    
     )
-
 style = {
     "font_family": "Noto Sans KR, sans-serif"
 }

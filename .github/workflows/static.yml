@@ -69,7 +69,7 @@ jobs:
 
       - name: Check if .nojekyll exists 📦
         id: check_files
-        uses: file-existence-action@v2
+        uses:  file-existence-action@v2
         with:
           files: ".nojekyll"
 
