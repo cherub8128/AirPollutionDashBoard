@@ -128,7 +128,6 @@ app = rx.App(
     stylesheets=[
         "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap",
     ],
-    style=style,
-    overlay_component=None
+    style=style
 )
 app.add_page(index)
