@@ -30,7 +30,7 @@ jobs:
         run: |
           reflex export --no-zip --frontend-only
         env:
-          API_URL: "http://www.divingavran.com:8000"
+          API_URL: "https://cherub8128.github.io/AirPollutionDashBoard/"
 
       - name: Upload frontend build 📦
         uses: actions/upload-artifact@v3
@@ -57,7 +57,7 @@ jobs:
           path: frontend/
 
       - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: github-pages-deploy-action@v4
         with:
           folder: frontend/
 
@@ -69,7 +69,7 @@ jobs:
 
       - name: Check if .nojekyll exists 📦
         id: check_files
-        uses: andstor/file-existence-action@v2
+        uses: file-existence-action@v2
         with:
           files: ".nojekyll"
 
